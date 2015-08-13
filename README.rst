@@ -54,7 +54,12 @@ Help
       --min MIN          Minimum length of the domain name
       --tld TLD          Top-level domain, default: .com
       --charset CHARSET  Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz
+      --pattern PATTERN  Wordlist pattern, optional. Example: examp@e (will
+                         produce: exampae, exampbe, exampce, etc)
 
+
+For more examples about ``--pattern`` see `rexos/wordlist`_ documentation: it's
+an amazing library!
 
 NSFAQ
 =====
@@ -73,3 +78,5 @@ Some ideas:
 * Find registered or non-registered domains :)
 * Stress your DNS server :)
 * :) :) :)
+
+.. _rexos/wordlist: https://github.com/rexos/wordlist/blob/master/README.md
