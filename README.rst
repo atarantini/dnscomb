@@ -37,6 +37,25 @@ Resulting file should look like::
     zg.com.ar
     zv.com.ar
 
+
+Help
+====
+
+.. code-block:: bash
+
+    $ python dnscomb.py -h
+    usage: dnscomb.py [-h] [--max MAX] [--min MIN] [--tld TLD] [--charset CHARSET]
+
+    dnscomb will build my own list of domains!
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      --max MAX          Maximum length of the domain name
+      --min MIN          Minimum length of the domain name
+      --tld TLD          Top-level domain, default: .com
+      --charset CHARSET  Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz
+
+
 NSFAQ
 =====
 
@@ -50,6 +69,7 @@ What I can do with this script?
 
 Some ideas:
 
-* Create your own domain database
+* Create your own domain database :)
 * Find registered or non-registered domains :)
-* Stress your DNS server :|
+* Stress your DNS server :)
+* :) :) :)
