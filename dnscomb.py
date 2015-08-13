@@ -7,7 +7,7 @@ import argparse
 
 import wordlist
 
-TLD = ".com.ar"
+TLD = ".com"
 MASK = "{name}{tld}"
 
 
@@ -26,6 +26,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='dnscomb will build my own list of domains!')
     parser.add_argument('--max', type=int, help='Maximum length of the domain name', default=3)
     parser.add_argument('--min', type=int, help='Minimum length of the domain name', default=1)
+    parser.add_argument('--tld', type=str, help='Top-level domain, default: .com', default=TLD)
     args = parser.parse_args()
 
     generator = wordlist.Generator(string.ascii_lowercase)

@@ -9,7 +9,7 @@ Build a simple list:
 
 .. code-block:: bash
 
-    $ python dnscomb.py --min 1 --max 2 > domains-a-zz.db
+    $ python dnscomb.py --tld .com.ar --min 1 --max 2 > domains-com-ar-a-zz.db
 
 
 Resulting file should look like::
