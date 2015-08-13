@@ -30,6 +30,7 @@ if __name__ == "__main__":
     parser.add_argument('--charset', type=str, help='Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz', default=string.ascii_lowercase)
     parser.add_argument('--pattern', type=str, help='Wordlist pattern, optional. Example: examp@e (will produce: exampae, exampbe, exampce, etc)', default=None)
     parser.add_argument('--resume', type=str, help='Resume list from the supplied domain name, optional. Example: aaa (will produce names staring in aab, aac, aad, etc)', default=None)
+    parser.add_argument('--output', type=str, help='Save output into a file', default=None)
     args = parser.parse_args()
 
     wordlist_generator = wordlist.Generator(args.charset)
@@ -50,4 +51,10 @@ if __name__ == "__main__":
             tld=args.tld
         )
         if domain_exists(hostname):
+            if args.output:
+                f = file(args.output, "a")
+                f.write(hostname + u"\n")
+                f.close()
+                continue
+
             print hostname
