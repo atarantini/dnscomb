@@ -14,6 +14,7 @@ Build a simple list:
 
 Resulting file should look like::
 
+    $ head domains-com-ar-a-zz.db
     a.com.ar
     c.com.ar
     d.com.ar
@@ -24,7 +25,7 @@ Resulting file should look like::
     i.com.ar
     j.com.ar
     l.com.ar
-    ...
+    $ tail domains-com-ar-a-zz.db
     wd.com.ar
     wr.com.ar
     xl.com.ar
