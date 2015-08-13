@@ -40,7 +40,7 @@ if __name__ == "__main__":
     for name in g:
         hostname = MASK.format(
             name=name,
-            tld=TLD
+            tld=args.tld
         )
         if domain_exists(hostname):
             print hostname
