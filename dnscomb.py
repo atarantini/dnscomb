@@ -28,10 +28,16 @@ if __name__ == "__main__":
     parser.add_argument('--min', type=int, help='Minimum length of the domain name', default=1)
     parser.add_argument('--tld', type=str, help='Top-level domain, default: .com', default=TLD)
     parser.add_argument('--charset', type=str, help='Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz', default=string.ascii_lowercase)
+    parser.add_argument('--pattern', type=str, help='Wordlist pattern, optional. Example: examp@e (will produce: exampae, exampbe, exampce, etc)', default=None)
     args = parser.parse_args()
 
-    generator = wordlist.Generator(args.charset)
-    for name in generator.generate(args.min, args.max):
+    wordlist_generator = wordlist.Generator(args.charset)
+    if args.pattern:
+        g = wordlist_generator.generate_with_pattern(args.pattern)
+    else:
+        g = wordlist_generator.generate(args.min, args.max)
+
+    for name in g:
         hostname = MASK.format(
             name=name,
             tld=TLD
