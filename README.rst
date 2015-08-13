@@ -56,7 +56,9 @@ Help
       --charset CHARSET  Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz
       --pattern PATTERN  Wordlist pattern, optional. Example: examp@e (will
                          produce: exampae, exampbe, exampce, etc)
-
+      --resume RESUME    Resume list from the supplied domain name, optional.
+                         Example: aaa (will produce names staring in aab, aac,
+                         aad, etc)
 
 For more examples about ``--pattern`` see `rexos/wordlist`_ documentation: it's
 an amazing library!

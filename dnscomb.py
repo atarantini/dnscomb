@@ -29,6 +29,7 @@ if __name__ == "__main__":
     parser.add_argument('--tld', type=str, help='Top-level domain, default: .com', default=TLD)
     parser.add_argument('--charset', type=str, help='Charset for the wordlist, default: abcdefghijklmnopqrstuvwxyz', default=string.ascii_lowercase)
     parser.add_argument('--pattern', type=str, help='Wordlist pattern, optional. Example: examp@e (will produce: exampae, exampbe, exampce, etc)', default=None)
+    parser.add_argument('--resume', type=str, help='Resume list from the supplied domain name, optional. Example: aaa (will produce names staring in aab, aac, aad, etc)', default=None)
     args = parser.parse_args()
 
     wordlist_generator = wordlist.Generator(args.charset)
@@ -37,7 +38,13 @@ if __name__ == "__main__":
     else:
         g = wordlist_generator.generate(args.min, args.max)
 
+    resume_ready = False
     for name in g:
+        if not resume_ready and args.resume:
+            if name == args.resume:
+                resume_ready = True
+            continue
+
         hostname = MASK.format(
             name=name,
             tld=args.tld
