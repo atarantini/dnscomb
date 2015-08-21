@@ -4,8 +4,10 @@ I want to build my own domain list by using a wordlist over a DNS server!
 import socket
 import string
 import argparse
+from itertools import tee
 
 import wordlist
+from clint.textui import progress
 
 TLD = ".com"
 MASK = "{name}{tld}"
@@ -40,21 +42,31 @@ if __name__ == "__main__":
         g = wordlist_generator.generate(args.min, args.max)
 
     resume_ready = False
-    for name in g:
-        if not resume_ready and args.resume:
-            if name == args.resume:
-                resume_ready = True
-            continue
+    g, g_count = tee(g)
+    total = sum(1 for x in g_count)
+    del g_count
 
-        hostname = MASK.format(
-            name=name,
-            tld=args.tld
-        )
-        if domain_exists(hostname):
-            if args.output:
-                f = file(args.output, "a")
-                f.write(hostname + u"\n")
-                f.close()
+    with progress.Bar(label="Resuming...", expected_size=total) as bar:
+        val = 0
+        last_val = 0
+        for name in g:
+            hostname = MASK.format(
+                name=name,
+                tld=args.tld
+            )
+            last_val = val
+            val += 1
+            if not resume_ready and args.resume:
+                if name == args.resume:
+                    resume_ready = True
                 continue
 
-            print hostname
+            bar.label = hostname + " "
+            bar.show(val)
+
+            if domain_exists(hostname):
+                if args.output:
+                    f = file(args.output, "a")
+                    f.write(hostname + u"\n")
+                    f.close()
+                    continue
