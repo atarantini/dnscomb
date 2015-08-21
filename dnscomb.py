@@ -6,11 +6,14 @@ import string
 import argparse
 
 import wordlist
+from celery import Celery
+
+app = Celery('dnscomb', backend='rpc://', broker='amqp://guest@localhost//')
 
 TLD = ".com"
 MASK = "{name}{tld}"
 
-
+@app.task
 def domain_exists(hostname):
     try:
         socket.gethostbyname(hostname)
@@ -50,7 +53,8 @@ if __name__ == "__main__":
             name=name,
             tld=args.tld
         )
-        if domain_exists(hostname):
+
+        if domain_exists.delay(hostname).get():
             if args.output:
                 f = file(args.output, "a")
                 f.write(hostname + u"\n")

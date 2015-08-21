@@ -1,1 +1,3 @@
-wordlist==1.0.1
+celery
+clint
+wordlist
