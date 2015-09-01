@@ -305,3 +305,6 @@ iuna.edu.ar
 iupa.edu.ar
 ivcc.edu.ar
 jsmo.edu.ar
+nzps.edu.ar
+palp.edu.ar
+pilp.edu.ar
