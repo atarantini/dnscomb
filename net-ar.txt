@@ -61,3 +61,7 @@ soto.net.ar
 tipo.net.ar
 toso.net.ar
 wisp.net.ar
+arcom.net.ar
+arias.net.ar
+ariel.net.ar
+artes.net.ar
